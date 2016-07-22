@@ -16,7 +16,7 @@ public class Poem {
     }
 
     public void GeneratePoem() {
-        while(true);
+        while(true){meter = "hj";}
     }
 
     public String Poem() { return poem; }
