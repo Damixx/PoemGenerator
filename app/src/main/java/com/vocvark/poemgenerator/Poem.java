@@ -8,11 +8,11 @@ public class Poem {
 
     private String poem;
 
-    public Poem(int lineCount, int wordsInLine, String meter, String[] words) {
+    public Poem(int lineCount, int wordsInLine, int meter, int dictionary) {
         this.lineCount = lineCount;
         this.wordsInLine = wordsInLine;
-        this.meter = meter;
-        this.words = words;
+        //this.meter = meter;
+        //this.words = words;
     }
 
     public void GeneratePoem() {

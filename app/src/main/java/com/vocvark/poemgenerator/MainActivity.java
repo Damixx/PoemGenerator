@@ -1,5 +1,6 @@
 package com.vocvark.poemgenerator;
 
+import android.content.res.Resources;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -12,6 +13,7 @@ import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity implements SeekBar.OnSeekBarChangeListener {
 
+    Resources resources;
 
     SeekBar countWordsSB;
     SeekBar countLinesSB;
@@ -19,20 +21,26 @@ public class MainActivity extends AppCompatActivity implements SeekBar.OnSeekBar
     TextView countWordsT;
     TextView countLinesT;
 
-    Spinner spinner;
+    Spinner metersS;
+    Spinner dictionaryS;
 
 
-    String[] data = {"one", "two", "three", "four", "five"};
+    String[] meters;
 
 
     int countWords;
     int countLines;
     int meter;
+    int dictionary;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        resources = getResources();
+
+        meters = resources.getStringArray(R.array.meters);
 
         countWords = 3;
         countLines = 4;
@@ -41,20 +49,35 @@ public class MainActivity extends AppCompatActivity implements SeekBar.OnSeekBar
         countLinesSB = (SeekBar) findViewById(R.id.countLinesSeekBar);
         countWordsT = (TextView) findViewById(R.id.countWordsText);
         countLinesT = (TextView) findViewById(R.id.countLinesText);
-        spinner = (Spinner) findViewById(R.id.meter);
+        metersS = (Spinner) findViewById(R.id.meter);
+        dictionaryS = (Spinner) findViewById(R.id.dictionary);
 
-        ArrayAdapter<String> meterAdapter = new ArrayAdapter<String>(this,android.R.layout.simple_spinner_item, data);
+        ArrayAdapter<String> meterAdapter = new ArrayAdapter<String>(this,android.R.layout.simple_spinner_item, meters);
+        ArrayAdapter<String> dictionaryAdapter = new ArrayAdapter<String>(this,android.R.layout.simple_spinner_item,meters);
+
+
+        dictionaryAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         meterAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinner.setAdapter(meterAdapter);
 
-        spinner.setPrompt("Метр");
-        spinner.setSelection(0);
+        dictionaryS.setAdapter(dictionaryAdapter);
+        metersS.setAdapter(meterAdapter);
+
+        dictionaryS.setSelection(0);
+        metersS.setSelection(0);
 
         AdapterView.OnItemSelectedListener selectListner = new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int position, long id) {
-                meter = position;
-                Toast.makeText(getBaseContext(), "Position = " + position, Toast.LENGTH_SHORT).show();
+                switch (view.getId()) {
+                    case R.id.meter:
+                        meter = position;
+                        Toast.makeText(getBaseContext(), "Position = " + position, Toast.LENGTH_SHORT).show();
+                        break;
+                    case R.id.dictionary:
+                        dictionary = position;
+                        Toast.makeText(getBaseContext(), "Position = " + position, Toast.LENGTH_SHORT).show();
+                        break;
+                }
             }
 
             @Override
@@ -63,7 +86,9 @@ public class MainActivity extends AppCompatActivity implements SeekBar.OnSeekBar
             }
         };
 
-        spinner.setOnItemSelectedListener(selectListner);
+        dictionaryS.setOnItemSelectedListener(selectListner);
+        metersS.setOnItemSelectedListener(selectListner);
+
         countWordsSB.setOnSeekBarChangeListener(this);
         countLinesSB.setOnSeekBarChangeListener(this);
     }
@@ -84,7 +109,7 @@ public class MainActivity extends AppCompatActivity implements SeekBar.OnSeekBar
 
     @Override
     public void onStartTrackingTouch(SeekBar seekBar) {
-
+        
     }
 
     @Override

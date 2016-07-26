@@ -58,10 +58,10 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/meter"
-        android:layout_below="@+id/countLinesSeekBar"
+        android:gravity="center"
+        android:layout_below="@+id/meterText"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:gravity="center" />
+        android:layout_alignParentStart="true" />
 
     <SeekBar
         android:layout_width="match_parent"
@@ -70,5 +70,30 @@
         android:layout_below="@+id/countLinesText"
         android:layout_centerHorizontal="true"
         android:progress="4" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="@string/meter"
+        android:id="@+id/meterText"
+        android:layout_below="@+id/countLinesSeekBar"
+        android:layout_centerHorizontal="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:id="@+id/dictionaryText"
+        android:layout_below="@+id/meter"
+        android:layout_centerHorizontal="true"
+        android:text="@string/dictionary" />
+
+    <Spinner
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/dictionary"
+        android:layout_below="@+id/dictionaryText"
+        android:layout_centerHorizontal="true" />
 
 </RelativeLayout>

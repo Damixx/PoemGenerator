@@ -1,5 +1,9 @@
 <resources>
     <string name="app_name">Poem Generator</string>
-    <string name="countWords">Количество слов:</string>
-    <string name="countLines">Количество строк:</string>
+
+    <string name="countWords">Количество слов</string>
+    <string name="countLines">Количество строк</string>
+    <string name="meter">метр</string>
+    <string name="dictionary">словарь</string>
+
 </resources>
